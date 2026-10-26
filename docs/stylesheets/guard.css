@@ -1,0 +1,12 @@
+:root, [data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #0B0B0C;
+  --md-primary-bg-color: #FFFFFF;
+  --md-accent-fg-color: #FFFFFF;
+  --md-default-bg-color: #0E0F12;
+  --md-default-fg-color: #F4F4F5;
+  --md-default-fg-color--light: #A5A6AB;
+  --md-typeset-a-color: #FFFFFF;
+  --md-code-bg-color: #17181C;
+}
+.md-typeset a { text-decoration: underline; text-underline-offset: 3px; }
+.md-typeset img { border-radius: 12px; }
