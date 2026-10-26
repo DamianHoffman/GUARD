@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block title %}Campaigns{% endblock %}
+{% block body %}
+<h1>Campaigns</h1><p class="sub">Spend, reach and budget burn per campaign (from <code>reporting.campaign_summary</code>).</p>
+<div class="filters"><a href="/campaigns" class="{{ 'on' if not status }}">All</a>
+{% for s in ['active','paused','finished','draft'] %}<a href="/campaigns?status={{ s }}" class="{{ 'on' if status == s }}">{{ s }}</a>{% endfor %}</div>
+<div class="card"><table><tr><th>Campaign</th><th>Advertiser</th><th>Status</th><th class="n">Impressions</th><th class="n">CTR</th><th class="n">Spend</th><th>Budget used</th></tr>
+{% for c in rows %}<tr><td><b>{{ c.campaign_code }}</b><div class="muted">{{ c.campaign_name }}</div></td><td>{{ c.advertiser }}</td><td><span class="pill {{ c.status }}">{{ c.status }}</span></td>
+<td class="n">{{ c.impressions|num }}</td><td class="n">{{ c.ctr_pct|pct(2) }}</td><td class="n">{{ c.spend_pln|money }}</td>
+<td><span class="bar"><i class="{{ 'over' if c.budget_used_pct and c.budget_used_pct > 100 }}" style="width:{{ [c.budget_used_pct or 0, 100]|min }}%"></i></span> {{ c.budget_used_pct|pct(0) }}</td></tr>{% endfor %}</table></div>
+{% endblock %}

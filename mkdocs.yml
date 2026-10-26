@@ -1,0 +1,38 @@
+site_name: GUARD
+site_description: Clean ad data in. Trusted reports out.
+repo_url: https://github.com/<your-username>/guard
+theme:
+  name: material
+  logo: assets/brand/guard-mark-white.svg
+  favicon: assets/brand/guard-icon.svg
+  palette:
+    scheme: slate
+    primary: black
+  features: [navigation.sections, content.code.copy, toc.integrate]
+extra_css:
+  - stylesheets/guard.css
+markdown_extensions:
+  - admonition
+  - tables
+  - toc: {permalink: true}
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+nav:
+  - Home: index.md
+  - Understand:
+      - Architecture: architecture.md
+      - Decision records: adr/README.md
+      - Service levels: service-levels.md
+      - Data protection: data-protection.md
+  - Operate:
+      - Runbook: runbook.md
+      - Incident drills: incidents/drills.md
+      - Azure: azure.md
+      - Pentaho: pentaho-guide.md
+  - Case studies:
+      - Legacy takeover: legacy-audit.md
+      - Process improvement: process-improvement.md
+      - Support ticket: user-support-ticket.md

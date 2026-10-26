@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block title %}Pipeline runs{% endblock %}
+{% block body %}
+<h1>Pipeline runs</h1><p class="sub">One row per delivered file. Identical files are skipped, bad files are quarantined.</p>
+<div class="filters"><a href="/runs" class="{{ 'on' if not status }}">All</a>
+{% for s in ['success','partial','failed','skipped'] %}<a href="/runs?status={{ s }}" class="{{ 'on' if status == s }}">{{ s }}</a>{% endfor %}</div>
+<div class="card"><table><tr><th>Started</th><th>File</th><th>Status</th><th class="n">Read</th><th class="n">Loaded</th><th class="n">Rejected</th><th>Message</th></tr>
+{% for r in rows %}<tr><td class="muted">{{ r.started_at|dt }}</td><td class="mono">{{ r.file_name }}</td><td><span class="pill {{ r.status }}">{{ r.status }}</span></td>
+<td class="n">{{ r.rows_read }}</td><td class="n">{{ r.rows_loaded }}</td><td class="n">{{ r.rows_rejected }}</td><td class="muted">{{ r.message or '' }}</td></tr>
+{% else %}<tr><td colspan="7" class="muted">No runs match.</td></tr>{% endfor %}</table></div>
+{% endblock %}

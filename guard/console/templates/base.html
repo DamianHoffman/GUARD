@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}GUARD{% endblock %} · GUARD console</title>
+<link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body><div class="layout">
+<nav class="side">
+  <div class="brand"><svg viewBox="0 0 527 478" aria-hidden="true"><path fill="#fff" d="M133 0L0 133V306H133Z M0 341L137 478H527V341Z M167 0H527V132H167Z M527 169H406L268 307H527Z"/></svg>GUARD</div>
+  <a href="/" class="{{ 'on' if path == '/' }}">Overview</a>
+  <a href="/runs" class="{{ 'on' if path == '/runs' }}">Pipeline runs</a>
+  <a href="/rejects" class="{{ 'on' if path == '/rejects' }}">Rejected rows</a>
+  <a href="/campaigns" class="{{ 'on' if path == '/campaigns' }}">Campaigns</a>
+  <a href="/status" class="{{ 'on' if path == '/status' }}">System status</a>
+  <div class="ver">v{{ version }} · read-only</div>
+</nav>
+<main class="main">{% block body %}{% endblock %}
+<footer>GUARD console reads the <code>reporting</code> schema as a least-privilege role. It cannot change data or see personal data.</footer></main>
+</div></body></html>

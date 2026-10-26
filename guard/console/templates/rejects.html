@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block title %}Rejected rows{% endblock %}
+{% block body %}
+<h1>Rejected rows</h1><p class="sub">Nothing is dropped silently: every rejected line is kept with the reason, so it can be sent back to the ad network.</p>
+<div class="filters"><a href="/rejects" class="{{ 'on' if not reason }}">All</a>
+{% for s in summary %}<a href="/rejects?reason={{ s.reason }}" class="{{ 'on' if reason == s.reason }}">{{ s.reason }} · {{ s.rows }}</a>{% endfor %}</div>
+<div class="card"><table><tr><th>File</th><th class="n">Line</th><th>Reason</th><th>Raw line</th></tr>
+{% for r in rows %}<tr><td class="mono">{{ r.file_name }}</td><td class="n">{{ r.line_no }}</td><td><span class="pill partial">{{ r.reason }}</span></td><td class="mono">{{ r.raw_line }}</td></tr>
+{% else %}<tr><td colspan="4" class="muted">No rejected rows.</td></tr>{% endfor %}</table></div>
+{% endblock %}

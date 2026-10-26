@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block title %}System status{% endblock %}
+{% block body %}
+<h1>System status</h1><p class="sub">The same checks the on-call person runs with <code>guard health</code>.</p>
+<div class="banner {{ worst }}">{{ 'All systems operational' if worst == 'OK' else 'Attention needed: warnings present' if worst == 'WARN' else 'Action required: critical issues' }}</div>
+<div class="card"><table>{% for c in checks %}<tr><td style="width:140px"><b>{{ c.name }}</b></td><td style="width:80px"><span class="pill {{ c.level }}">{{ c.level }}</span></td><td>{{ c.detail }}</td></tr>{% endfor %}</table></div>
+{% endblock %}

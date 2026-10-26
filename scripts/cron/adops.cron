@@ -1,0 +1,15 @@
+# Install with:  crontab scripts/cron/guard.cron   (edit the path first!)
+# m  h  dom mon dow  command
+SHELL=/bin/bash
+APP=/opt/guard
+
+# 05:30 daily  - load yesterday's files from the ad networks
+30 5 * * *   cd $APP && ./scripts/run_etl.sh                         >> logs/cron.log 2>&1
+# 06:15 daily  - did all three networks deliver? (exit 2 = missing/failed -> alert)
+15 6 * * *   cd $APP && .venv/bin/python -m guard.check_freshness     >> logs/freshness.log 2>&1
+# 02:00 daily  - encrypted backup + retention cleanup
+0 2 * * *    cd $APP && ./scripts/backup.sh                         >> logs/cron.log 2>&1
+# 03:00 Sundays - prove the backup restores
+0 3 * * 0    cd $APP && ./scripts/restore_test.sh                   >> logs/cron.log 2>&1
+# every 10 minutes - health check (log only when not OK)
+*/10 * * * * cd $APP && ./scripts/healthcheck.sh | grep -v '^OK' >> logs/health.log 2>&1

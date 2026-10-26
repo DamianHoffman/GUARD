@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "guard"
+version = "1.0.0"
+description = "Ad-data operations toolkit: idempotent ETL, data quality, encrypted backups, monitoring and a read-only console."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = ["psycopg2-binary>=2.9", "Flask>=3.0"]
+
+[project.optional-dependencies]
+demo = ["Faker>=24.0"]
+dev  = ["Faker>=24.0", "pytest>=8.0"]
+
+[project.scripts]
+guard = "guard.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["guard*"]
+
+[tool.setuptools.package-data]
+"guard.console" = ["templates/*.html", "static/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[project.urls]
+Homepage = "https://github.com/<your-username>/guard"
+Documentation = "https://<your-username>.github.io/guard/"

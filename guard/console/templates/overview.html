@@ -1,0 +1,18 @@
+{% extends "base.html" %}{% block title %}Overview{% endblock %}
+{% block body %}
+<h1>Overview</h1><p class="sub">Ad performance and pipeline health across all networks (demo data).</p>
+<div class="kpis">
+  <div class="kpi"><div class="l">Files loaded</div><div class="v">{{ k.files|num }}</div><div class="s">{{ k.failed }} failed</div></div>
+  <div class="kpi"><div class="l">Rows processed</div><div class="v">{{ k.rows_read|num }}</div><div class="s">{{ k.rows_loaded|num }} loaded</div></div>
+  <div class="kpi"><div class="l">Rejected rows</div><div class="v">{{ k.rows_rejected|num }}</div><div class="s">{{ k.reject_pct|pct }} of rows, each with a reason</div></div>
+</div>
+<div class="row"><div class="card wide"><h2>Daily spend (PLN), last 30 report days</h2>{{ spend_chart|safe }}</div></div>
+<div class="row">
+  <div class="card"><h2>Spend by network (PLN)</h2>{{ network_chart|safe }}</div>
+  <div class="card"><h2>Why rows were rejected</h2>{{ reasons_chart|safe }}</div>
+</div>
+<div class="card"><h2>Top campaigns by spend</h2>
+<table><tr><th>Campaign</th><th>Advertiser</th><th class="n">Spend</th><th class="n">Budget</th><th>Budget used</th></tr>
+{% for c in top %}<tr><td><b>{{ c.campaign_code }}</b></td><td>{{ c.advertiser }}</td><td class="n">{{ c.spend_pln|money }}</td><td class="n">{{ c.budget_pln|money }}</td>
+<td><span class="bar"><i class="{{ 'over' if c.budget_used_pct and c.budget_used_pct > 100 }}" style="width:{{ [c.budget_used_pct or 0, 100]|min }}%"></i></span> {{ c.budget_used_pct|pct(0) }}</td></tr>{% endfor %}</table></div>
+{% endblock %}

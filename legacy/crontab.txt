@@ -1,0 +1,4 @@
+# found on server prod-ads-01, no comments, no owner listed
+0 3 * * * /home/jan/backup_old.sh > /dev/null 2>&1
+0 7 * * 1 /home/jan/weekly_report.sh
+#30 5 * * * /home/jan/import_adserve.sh   <- commented out, script no longer exists
