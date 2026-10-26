@@ -15,7 +15,7 @@
 <p align="center"><b>Czyste dane reklamowe. Zaufane raporty.</b></p>
 
 <p align="center">
-  <a href="https://github.com/<your-username>/guard/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/<your-username>/guard/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://github.com/DamianHoffman/guard/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DamianHoffman/guard/actions/workflows/ci.yml/badge.svg"></a>
   <img alt="PostgreSQL 16" src="https://img.shields.io/badge/PostgreSQL-16-0B0B0C?logo=postgresql&logoColor=white">
   <img alt="Python 3.10+" src="https://img.shields.io/badge/Python-3.10%2B-0B0B0C?logo=python&logoColor=white">
   <img alt="Docker" src="https://img.shields.io/badge/Docker-Compose-0B0B0C?logo=docker&logoColor=white">
@@ -91,7 +91,7 @@ Dane są generowane względem bieżącej daty, więc przy własnym uruchomieniu 
 Potrzebujesz: Python 3.10+, narzędzia PostgreSQL (`psql`, `pg_dump`), `gpg` i Docker (do pełnego zestawu).
 
 ```bash
-git clone https://github.com/<your-username>/guard.git && cd guard
+git clone https://github.com/DamianHoffman/guard.git && cd guard
 make setup && nano .env     # instalacja polecenia `guard` i ustawienie haseł (ZMIEŃ wszystkie)
 make up                     # PostgreSQL, konsola, Grafana, Prometheus
 make demo                   # dane demonstracyjne: 30 dni plików, od razu załadowane
